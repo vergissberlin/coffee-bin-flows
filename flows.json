@@ -7,6 +7,20 @@
         "info": "The bin is full or not"
     },
     {
+        "id": "d9eebb59.37215",
+        "type": "tab",
+        "label": "coffee bin - Dashboard",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "a7b4cee5.69f6e8",
+        "type": "tab",
+        "label": "coffee bin - social",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "b7357d8d.7a233",
         "type": "xmpp-server",
         "z": "",
@@ -27,12 +41,15 @@
         "cleansession": true,
         "birthTopic": "",
         "birthQos": "0",
+        "birthRetain": "false",
         "birthPayload": "",
         "closeTopic": "",
         "closeQos": "0",
+        "closeRetain": "false",
         "closePayload": "",
         "willTopic": "",
         "willQos": "0",
+        "willRetain": "false",
         "willPayload": ""
     },
     {
@@ -46,81 +63,83 @@
         "id": "cd5db4fe.a1b9b8",
         "type": "ui_base",
         "theme": {
-            "name": "theme-light",
+            "name": "theme-custom",
             "lightTheme": {
                 "default": "#0094CE",
                 "baseColor": "#0094CE",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "baseFont": "Trebuchet MS,Helvetica,sans-serif",
                 "edited": true,
                 "reset": false
             },
             "darkTheme": {
                 "default": "#097479",
-                "baseColor": "#097479",
+                "baseColor": "rgb(103,58,183)",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false
+                "edited": true,
+                "reset": false
             },
             "customTheme": {
-                "name": "Untitled Theme 1",
+                "name": "coffee bin",
                 "default": "#4B7930",
-                "baseColor": "#4B7930",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                "baseColor": "rgb(103,58,183)",
+                "baseFont": "Lucida Sans Unicode,Lucida Grande,sans-serif",
+                "reset": false
             },
             "themeState": {
                 "base-color": {
-                    "default": "#0094CE",
-                    "value": "#0094CE",
-                    "edited": false
+                    "default": "#4B7930",
+                    "value": "rgb(103,58,183)",
+                    "edited": true
                 },
                 "page-titlebar-backgroundColor": {
-                    "value": "#0094CE",
+                    "value": "rgb(103,58,183)",
                     "edited": false
                 },
                 "page-backgroundColor": {
-                    "value": "#fafafa",
-                    "edited": false
+                    "value": "#222222",
+                    "edited": true
                 },
                 "page-sidebar-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
+                    "value": "rgba(103,58,183,0.5)",
+                    "edited": true
                 },
                 "group-textColor": {
-                    "value": "#1bbfff",
+                    "value": "#916dd1",
                     "edited": false
                 },
                 "group-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
+                    "value": "rgba(103,58,183,0)",
+                    "edited": true
                 },
                 "group-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
+                    "value": "#222222",
+                    "edited": true
                 },
                 "widget-textColor": {
-                    "value": "#111111",
+                    "value": "#eeeeee",
                     "edited": false
                 },
                 "widget-backgroundColor": {
-                    "value": "#0094ce",
+                    "value": "#673ab7",
                     "edited": false
                 },
                 "widget-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
+                    "value": "#222222",
+                    "edited": true
                 },
                 "base-font": {
-                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                    "value": "Lucida Sans Unicode,Lucida Grande,sans-serif"
                 }
             },
             "angularTheme": {
-                "primary": "indigo",
+                "primary": "deep-purple",
                 "accents": "blue",
                 "warn": "red",
                 "background": "grey"
             }
         },
         "site": {
-            "name": "Node-RED Dashboard",
+            "name": "coffee bin -  Dashboard",
             "hideToolbar": "false",
             "allowSwipe": "false",
             "lockMenu": "false",
@@ -139,6 +158,42 @@
         }
     },
     {
+        "id": "45f8c5f8.bb9a8c",
+        "type": "slack-bot-controller",
+        "z": "",
+        "name": "Netresearch",
+        "token": "xoxp-2251962786-2251962790-490932179543-c36075ea8f847b2bea9dd13f02c0a234"
+    },
+    {
+        "id": "420c5a87.aff35c",
+        "type": "ui_tab",
+        "z": "",
+        "name": "coffee bin",
+        "icon": "dashboard",
+        "order": 1
+    },
+    {
+        "id": "4d05f356.70804c",
+        "type": "ui_link",
+        "z": "",
+        "name": "Documentation",
+        "link": "https://coffee-bin.readthedocs.io/en/latest/",
+        "icon": "open_in_browser",
+        "target": "newtab",
+        "order": 2
+    },
+    {
+        "id": "748261d6.4eab18",
+        "type": "ui_group",
+        "z": "",
+        "name": "Sensors",
+        "tab": "420c5a87.aff35c",
+        "order": 1,
+        "disp": false,
+        "width": "6",
+        "collapse": false
+    },
+    {
         "id": "dd712490.ac6188",
         "type": "e-mail",
         "z": "bb82f467.036d98",
@@ -148,7 +203,7 @@
         "name": "André Lademann <andre.lademann@netresearch.de>",
         "dname": "",
         "x": 700,
-        "y": 200,
+        "y": 60,
         "wires": []
     },
     {
@@ -163,7 +218,7 @@
         "crontab": "",
         "once": false,
         "x": 150,
-        "y": 200,
+        "y": 100,
         "wires": [
             [
                 "834a0758.d30a68"
@@ -175,11 +230,11 @@
         "type": "function",
         "z": "bb82f467.036d98",
         "name": "msg",
-        "func": "msg.topic = 'JURA: Der Eimer der Kaffemaschine ist voll.';\nmsg.from = 'andre.lademann@netresearch.de';\nmsg.payload = '<h1>Alarm</h1><marquee>Bracket buster</marquee><div itemscope itemtype=\"http://schema.org/EmailMessage\">  <div itemprop=\"potentialAction\" itemscope itemtype=\"http://schema.org/ConfirmAction\">    <meta itemprop=\"name\" content=\"Approve Expense\"/>    <div itemprop=\"handler\" itemscope itemtype=\"http://schema.org/HttpActionHandler\">      <link itemprop=\"url\" href=\"https://myexpenses.com/approve?expenseId=abc123\"/>    </div>  </div>  <meta itemprop=\"description\" content=\"Approval request for Johns $10.13 expense for office supplies\"/></div>';\nmsg.attachements= [\n    {\n        filename: 'README.md',\n        path: '/app/README.md'\n    },\n       {   // use URL as an attachment \n        filename: 'license.txt',\n        path: 'https://raw.github.com/nodemailer/nodemailer/master/LICENSE'\n    }\n];\nreturn msg;",
+        "func": "msg.topic = 'JURA: Der Eimer der Kaffemaschine ist voll.';\nmsg.from = 'andre.lademann@netresearch.de';\nmsg.payload = '<h1>Alarm</h1><marquee>Bracket buster</marquee><div itemscope itemtype=\"http://schema.org/EmailMessage\">  <div itemprop=\"potentialAction\" itemscope itemtype=\"http://schema.org/ConfirmAction\">    <meta itemprop=\"name\" content=\"Approve Expense\"/>    <div itemprop=\"handler\" itemscope itemtype=\"http://schema.org/HttpActionHandler\">      <link itemprop=\"url\" href=\"https://myexpenses.com/approve?expenseId=abc123\"/>    </div>  </div>  <meta itemprop=\"description\" content=\"Approval request for Johns $10.13 expense for office supplies\"/></div>';\nmsg.attachements= [\n    {\n        filename: 'README.md',\n        path: '/app/README.md'\n    },\n       {   // use URL as an attachment \n        filename: 'coffee-bin-256.png',\n        path: '/usr/src/public/images/logo/coffee-bin-256.png'\n    }\n];\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 310,
-        "y": 200,
+        "y": 100,
         "wires": [
             [
                 "dd712490.ac6188"
@@ -197,7 +252,7 @@
         "syntax": "mustache",
         "template": "<html>\n  <head>\n    <title>Did you enjoy Google Cafe?</title>\n  </head>\n  <body>\n    <script type=\"application/ld+json\">\n{\n  \"@context\": \"http://schema.org\",\n  \"@type\": \"EmailMessage\",\n  \"potentialAction\": {\n    \"@type\": \"ReviewAction\",\n    \"review\": {\n      \"@type\": \"Review\",\n      \"itemReviewed\": {\n        \"@type\": \"FoodEstablishment\",\n        \"name\": \"Joe's Diner\"\n      },\n      \"reviewRating\": {\n        \"@type\": \"Rating\",\n        \"bestRating\": \"5\",\n        \"worstRating\": \"1\"\n      }\n    },\n    \"handler\": {\n      \"@type\": \"HttpActionHandler\",\n      \"url\": \"http://reviews.com/review?id=123\",\n      \"requiredProperty\": {\n        \"@type\": \"Property\",\n        \"name\": \"review.reviewRating.ratingValue\"\n      },\n      \"method\": \"http://schema.org/HttpRequestMethod/POST\"\n    }\n  },\n  \"description\": \"We hope you enjoyed your meal at Joe's Diner. Please rate your experience.\"\n}\n</script>\n<script type=\"application/ld+json\">\n{\n  \"@context\": \"http://schema.org\",\n  \"@type\": \"EventReservation\",\n  \"reservationNumber\": \"E123456789\",\n  \"reservationStatus\": \"http://schema.org/Confirmed\",\n  \"underName\": {\n    \"@type\": \"Person\",\n    \"name\": \"John Smith\"\n  },\n  \"reservationFor\": {\n    \"@type\": \"Event\",\n    \"name\": \"Foo Fighters Concert\",\n    \"startDate\": \"2017-03-06T19:30:00-08:00\",\n    \"location\": {\n      \"@type\": \"Place\",\n      \"name\": \"AT&T Park\",\n      \"address\": {\n        \"@type\": \"PostalAddress\",\n        \"streetAddress\": \"24 Willie Mays Plaza\",\n        \"addressLocality\": \"San Francisco\",\n        \"addressRegion\": \"CA\",\n        \"postalCode\": \"94107\",\n        \"addressCountry\": \"US\"\n      }\n    }\n  }\n}\n</script>\n    <p>\n      Dear John, please rate Google Cafe between 1 and 5 stars and, optionally, add a text comment.\n    </p>\n  </body>\n</html>",
         "x": 310,
-        "y": 140,
+        "y": 60,
         "wires": [
             [
                 "dd712490.ac6188"
@@ -216,25 +271,12 @@
         "crontab": "",
         "once": false,
         "x": 120,
-        "y": 140,
+        "y": 60,
         "wires": [
             [
                 "3456f766.7b7878"
             ]
         ]
-    },
-    {
-        "id": "7e7633e2.e59c6c",
-        "type": "xmpp out",
-        "z": "bb82f467.036d98",
-        "name": "",
-        "server": "b7357d8d.7a233",
-        "to": "andre.lademann@netresearch.de",
-        "join": false,
-        "sendObject": false,
-        "x": 550,
-        "y": 320,
-        "wires": []
     },
     {
         "id": "b3bcde2f.cdde3",
@@ -248,118 +290,589 @@
         "y": 260,
         "wires": [
             [
-                "e3b685f3.faea28",
-                "7e7633e2.e59c6c",
-                "d262e0bf.6c6e2"
+                "508d9e0f.7991b8"
             ]
         ]
-    },
-    {
-        "id": "89b02cb2.96c91",
-        "type": "xmpp in",
-        "z": "bb82f467.036d98",
-        "name": "",
-        "server": "b7357d8d.7a233",
-        "to": "andre.lademann@netresearch.de",
-        "join": false,
-        "x": 310,
-        "y": 420,
-        "wires": [
-            [
-                "83a51231.548e7"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "e3b685f3.faea28",
-        "type": "debug",
-        "z": "bb82f467.036d98",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 570,
-        "y": 380,
-        "wires": []
     },
     {
         "id": "5f0e2d55.475d94",
         "type": "mqtt in",
         "z": "bb82f467.036d98",
-        "name": "coffee-bin.bin",
+        "name": "coffee-bin.maintenance",
         "topic": "vergissberlin/feeds/coffee-bin.maintenance",
         "qos": "2",
         "broker": "3517db02.a6b544",
-        "x": 290,
+        "x": 260,
         "y": 320,
         "wires": [
             [
-                "e3b685f3.faea28",
-                "d262e0bf.6c6e2"
+                "a0849241.ef3c6"
             ]
         ]
     },
     {
-        "id": "d262e0bf.6c6e2",
-        "type": "xmpp out",
+        "id": "508d9e0f.7991b8",
+        "type": "link out",
         "z": "bb82f467.036d98",
+        "name": "MQTT bin",
+        "links": [
+            "79790779.e20a18",
+            "822e7bc1.cd1ff"
+        ],
+        "x": 515,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "26afc276.4e38ae",
+        "type": "ui_text",
+        "z": "d9eebb59.37215",
+        "group": "748261d6.4eab18",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Bin status",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 540,
+        "y": 140,
+        "wires": [],
+        "inputLabels": [
+            "unclear"
+        ],
+        "icon": "node-red/leveldb.png"
+    },
+    {
+        "id": "ff6553a3.7c4938",
+        "type": "ui_toast",
+        "z": "d9eebb59.37215",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "topic": "Info",
+        "name": "",
+        "x": 570,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "296f7975.44e866",
+        "type": "change",
+        "z": "d9eebb59.37215",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "1",
+                "fromt": "str",
+                "to": "Coffee bin is full",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "0",
+                "fromt": "str",
+                "to": "Coffee bin is cleaned",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 80,
+        "wires": [
+            [
+                "ff6553a3.7c4938",
+                "26afc276.4e38ae"
+            ]
+        ]
+    },
+    {
+        "id": "db2f1d33.a28c7",
+        "type": "ui_chart",
+        "z": "d9eebb59.37215",
+        "name": "",
+        "group": "748261d6.4eab18",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "Bin history",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "dd HH:mm",
+        "interpolate": "step",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "1",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "604800",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1F77B4",
+            "#AEC7E8",
+            "#FF7F0E",
+            "#2CA02C",
+            "#98DF8A",
+            "#D62728",
+            "#FF9896",
+            "#9467BD",
+            "#C5B0D5"
+        ],
+        "useOldStyle": false,
+        "x": 330,
+        "y": 140,
+        "wires": [
+            [],
+            []
+        ],
+        "icon": "node-red/cog.png"
+    },
+    {
+        "id": "79790779.e20a18",
+        "type": "link in",
+        "z": "d9eebb59.37215",
+        "name": "",
+        "links": [
+            "508d9e0f.7991b8"
+        ],
+        "x": 175,
+        "y": 80,
+        "wires": [
+            [
+                "296f7975.44e866",
+                "db2f1d33.a28c7"
+            ]
+        ]
+    },
+    {
+        "id": "a0849241.ef3c6",
+        "type": "link out",
+        "z": "bb82f467.036d98",
+        "name": "MQTT maintenance",
+        "links": [
+            "796a56f5.5c265",
+            "151345af.ee8012"
+        ],
+        "x": 515,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "8e100a30.16bad8",
+        "type": "ui_chart",
+        "z": "d9eebb59.37215",
+        "name": "",
+        "group": "748261d6.4eab18",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "label": "Maintenance history",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "dd HH:mm",
+        "interpolate": "step",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "1",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "604800",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1F77B4",
+            "#AEC7E8",
+            "#FF7F0E",
+            "#2CA02C",
+            "#98DF8A",
+            "#D62728",
+            "#FF9896",
+            "#9467BD",
+            "#C5B0D5"
+        ],
+        "useOldStyle": false,
+        "x": 360,
+        "y": 340,
+        "wires": [
+            [],
+            []
+        ],
+        "icon": "node-red/cog.png"
+    },
+    {
+        "id": "9b181dad.d5af6",
+        "type": "ui_text",
+        "z": "d9eebb59.37215",
+        "group": "748261d6.4eab18",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Maintenance status",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 570,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "738f469.f181538",
+        "type": "change",
+        "z": "d9eebb59.37215",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "1",
+                "fromt": "str",
+                "to": "Maintenance activated",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "0",
+                "fromt": "str",
+                "to": "Maintenance disabled",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 280,
+        "wires": [
+            [
+                "9b181dad.d5af6"
+            ]
+        ]
+    },
+    {
+        "id": "796a56f5.5c265",
+        "type": "link in",
+        "z": "d9eebb59.37215",
+        "name": "",
+        "links": [
+            "a0849241.ef3c6"
+        ],
+        "x": 175,
+        "y": 280,
+        "wires": [
+            [
+                "8e100a30.16bad8",
+                "738f469.f181538",
+                "8beb71e5.b418c8"
+            ]
+        ]
+    },
+    {
+        "id": "822e7bc1.cd1ff",
+        "type": "link in",
+        "z": "a7b4cee5.69f6e8",
+        "name": "",
+        "links": [
+            "508d9e0f.7991b8"
+        ],
+        "x": 235,
+        "y": 100,
+        "wires": [
+            [
+                "38f529e5.9ed7e6"
+            ]
+        ]
+    },
+    {
+        "id": "151345af.ee8012",
+        "type": "link in",
+        "z": "a7b4cee5.69f6e8",
+        "name": "",
+        "links": [
+            "a0849241.ef3c6"
+        ],
+        "x": 235,
+        "y": 300,
+        "wires": [
+            [
+                "710515ac.a45654"
+            ]
+        ]
+    },
+    {
+        "id": "710515ac.a45654",
+        "type": "xmpp out",
+        "z": "a7b4cee5.69f6e8",
+        "name": "",
+        "server": "b7357d8d.7a233",
+        "to": "andre.lademann@netresearch.de",
+        "join": false,
+        "sendObject": false,
+        "x": 490,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "38f529e5.9ed7e6",
+        "type": "xmpp out",
+        "z": "a7b4cee5.69f6e8",
         "name": "",
         "server": "15684f5d.19a101",
         "to": "foosball@neresearch.de",
         "join": false,
         "sendObject": false,
-        "x": 550,
-        "y": 260,
+        "x": 490,
+        "y": 100,
         "wires": []
     },
     {
-        "id": "d77695be.fd2f08",
-        "type": "xmpp out",
-        "z": "bb82f467.036d98",
+        "id": "65d75cd4.c11ce4",
+        "type": "xmpp in",
+        "z": "a7b4cee5.69f6e8",
         "name": "",
         "server": "b7357d8d.7a233",
         "to": "typo3@conference.xmpp.netresearch.de",
-        "join": false,
+        "join": true,
+        "x": 290,
+        "y": 500,
+        "wires": [
+            [
+                "d7abfb65.ac419"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8f2a5d72.73b1e8",
+        "type": "xmpp out",
+        "z": "a7b4cee5.69f6e8",
+        "name": "",
+        "server": "b7357d8d.7a233",
+        "to": "typo3@conference.xmpp.netresearch.de",
+        "join": true,
         "sendObject": false,
-        "x": 550,
-        "y": 480,
+        "x": 530,
+        "y": 560,
         "wires": []
     },
     {
-        "id": "4f3c816c.f865e",
+        "id": "8f4c89cb.a1f338",
         "type": "inject",
-        "z": "bb82f467.036d98",
+        "z": "a7b4cee5.69f6e8",
         "name": "",
         "topic": "",
-        "payload": "",
-        "payloadType": "date",
+        "payload": "Seltsam",
+        "payloadType": "str",
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 300,
-        "y": 480,
+        "x": 280,
+        "y": 560,
         "wires": [
             [
-                "d77695be.fd2f08"
+                "8f2a5d72.73b1e8"
             ]
         ]
     },
     {
-        "id": "83a51231.548e7",
+        "id": "d7abfb65.ac419",
         "type": "debug",
-        "z": "bb82f467.036d98",
+        "z": "a7b4cee5.69f6e8",
         "name": "",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 570,
-        "y": 420,
+        "x": 550,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "18c586e3.2209d1",
+        "type": "slack-out",
+        "z": "a7b4cee5.69f6e8",
+        "name": "",
+        "channel": "#ci",
+        "controller": "45f8c5f8.bb9a8c",
+        "x": 530,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "447707d3.9150a",
+        "type": "slack-in",
+        "z": "a7b4cee5.69f6e8",
+        "name": "andre.lademann",
+        "events": "direct_mention",
+        "controller": "45f8c5f8.bb9a8c",
+        "x": 260,
+        "y": 440,
+        "wires": [
+            [
+                "d7abfb65.ac419"
+            ]
+        ]
+    },
+    {
+        "id": "a507bf23.e43c4",
+        "type": "inject",
+        "z": "a7b4cee5.69f6e8",
+        "name": "",
+        "topic": "",
+        "payload": "MaSlack",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 280,
+        "y": 620,
+        "wires": [
+            [
+                "18c586e3.2209d1"
+            ]
+        ]
+    },
+    {
+        "id": "8beb71e5.b418c8",
+        "type": "ui_switch",
+        "z": "d9eebb59.37215",
+        "name": "",
+        "label": "Maintenance switch",
+        "group": "748261d6.4eab18",
+        "order": 3,
+        "width": "6",
+        "height": "2",
+        "passthru": false,
+        "decouple": "true",
+        "topic": "vergissberlin/feeds/coffee-bin.maintenance",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "x": 360,
+        "y": 400,
+        "wires": [
+            [
+                "773c8529.b509dc"
+            ]
+        ]
+    },
+    {
+        "id": "773c8529.b509dc",
+        "type": "link out",
+        "z": "d9eebb59.37215",
+        "name": "MQTT maintenance out",
+        "links": [
+            "3534f53b.c16b72"
+        ],
+        "x": 555,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "3534f53b.c16b72",
+        "type": "link in",
+        "z": "bb82f467.036d98",
+        "name": "",
+        "links": [
+            "773c8529.b509dc"
+        ],
+        "x": 346,
+        "y": 380,
+        "wires": [
+            [
+                "92d18e9d.1b54e8"
+            ]
+        ]
+    },
+    {
+        "id": "92d18e9d.1b54e8",
+        "type": "mqtt out",
+        "z": "bb82f467.036d98",
+        "name": "",
+        "topic": "vergissberlin/feeds/coffee-bin.maintenance",
+        "qos": "2",
+        "retain": "",
+        "broker": "3517db02.a6b544",
+        "x": 670,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "a655a94c.c47b78",
+        "type": "comment",
+        "z": "a7b4cee5.69f6e8",
+        "name": "bin",
+        "info": "",
+        "x": 110,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "ac1e7098.26cbf8",
+        "type": "comment",
+        "z": "a7b4cee5.69f6e8",
+        "name": "maintenance",
+        "info": "",
+        "x": 130,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "4f86ee7b.14f198",
+        "type": "comment",
+        "z": "a7b4cee5.69f6e8",
+        "name": "testing",
+        "info": "",
+        "x": 110,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "ed266554.44eec8",
+        "type": "comment",
+        "z": "d9eebb59.37215",
+        "name": "bin",
+        "info": "",
+        "x": 90,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "64866bfd.208a74",
+        "type": "comment",
+        "z": "d9eebb59.37215",
+        "name": "maintenance",
+        "info": "",
+        "x": 110,
+        "y": 240,
         "wires": []
     }
 ]
