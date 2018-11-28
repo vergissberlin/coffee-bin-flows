@@ -1,0 +1,365 @@
+[
+    {
+        "id": "bb82f467.036d98",
+        "type": "tab",
+        "label": "coffee bin",
+        "disabled": false,
+        "info": "The bin is full or not"
+    },
+    {
+        "id": "b7357d8d.7a233",
+        "type": "xmpp-server",
+        "z": "",
+        "user": "andre.lademann@netresearch.de",
+        "nickname": "andre.lademann"
+    },
+    {
+        "id": "3517db02.a6b544",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "Adafruit",
+        "broker": "io.adafruit.com",
+        "port": "1883",
+        "clientid": "ad755b7b9d994e4abe62bc0ace181023",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "15684f5d.19a101",
+        "type": "xmpp-server",
+        "z": "",
+        "user": "foosball@netresearch.de",
+        "nickname": "foosball"
+    },
+    {
+        "id": "cd5db4fe.a1b9b8",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "dd712490.ac6188",
+        "type": "e-mail",
+        "z": "bb82f467.036d98",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "secure": true,
+        "name": "André Lademann <andre.lademann@netresearch.de>",
+        "dname": "",
+        "x": 700,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "9fe1659f.9f4f48",
+        "type": "inject",
+        "z": "bb82f467.036d98",
+        "name": "",
+        "topic": "Der Eimer der Kaffeemaschine ist voll",
+        "payload": "Es wird Zeit ihn zu leeren",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 150,
+        "y": 200,
+        "wires": [
+            [
+                "834a0758.d30a68"
+            ]
+        ]
+    },
+    {
+        "id": "834a0758.d30a68",
+        "type": "function",
+        "z": "bb82f467.036d98",
+        "name": "msg",
+        "func": "msg.topic = 'JURA: Der Eimer der Kaffemaschine ist voll.';\nmsg.from = 'andre.lademann@netresearch.de';\nmsg.payload = '<h1>Alarm</h1><marquee>Bracket buster</marquee><div itemscope itemtype=\"http://schema.org/EmailMessage\">  <div itemprop=\"potentialAction\" itemscope itemtype=\"http://schema.org/ConfirmAction\">    <meta itemprop=\"name\" content=\"Approve Expense\"/>    <div itemprop=\"handler\" itemscope itemtype=\"http://schema.org/HttpActionHandler\">      <link itemprop=\"url\" href=\"https://myexpenses.com/approve?expenseId=abc123\"/>    </div>  </div>  <meta itemprop=\"description\" content=\"Approval request for Johns $10.13 expense for office supplies\"/></div>';\nmsg.attachements= [\n    {\n        filename: 'README.md',\n        path: '/app/README.md'\n    },\n       {   // use URL as an attachment \n        filename: 'license.txt',\n        path: 'https://raw.github.com/nodemailer/nodemailer/master/LICENSE'\n    }\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 200,
+        "wires": [
+            [
+                "dd712490.ac6188"
+            ]
+        ]
+    },
+    {
+        "id": "3456f766.7b7878",
+        "type": "template",
+        "z": "bb82f467.036d98",
+        "name": "Event",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "mustache",
+        "template": "<html>\n  <head>\n    <title>Did you enjoy Google Cafe?</title>\n  </head>\n  <body>\n    <script type=\"application/ld+json\">\n{\n  \"@context\": \"http://schema.org\",\n  \"@type\": \"EmailMessage\",\n  \"potentialAction\": {\n    \"@type\": \"ReviewAction\",\n    \"review\": {\n      \"@type\": \"Review\",\n      \"itemReviewed\": {\n        \"@type\": \"FoodEstablishment\",\n        \"name\": \"Joe's Diner\"\n      },\n      \"reviewRating\": {\n        \"@type\": \"Rating\",\n        \"bestRating\": \"5\",\n        \"worstRating\": \"1\"\n      }\n    },\n    \"handler\": {\n      \"@type\": \"HttpActionHandler\",\n      \"url\": \"http://reviews.com/review?id=123\",\n      \"requiredProperty\": {\n        \"@type\": \"Property\",\n        \"name\": \"review.reviewRating.ratingValue\"\n      },\n      \"method\": \"http://schema.org/HttpRequestMethod/POST\"\n    }\n  },\n  \"description\": \"We hope you enjoyed your meal at Joe's Diner. Please rate your experience.\"\n}\n</script>\n<script type=\"application/ld+json\">\n{\n  \"@context\": \"http://schema.org\",\n  \"@type\": \"EventReservation\",\n  \"reservationNumber\": \"E123456789\",\n  \"reservationStatus\": \"http://schema.org/Confirmed\",\n  \"underName\": {\n    \"@type\": \"Person\",\n    \"name\": \"John Smith\"\n  },\n  \"reservationFor\": {\n    \"@type\": \"Event\",\n    \"name\": \"Foo Fighters Concert\",\n    \"startDate\": \"2017-03-06T19:30:00-08:00\",\n    \"location\": {\n      \"@type\": \"Place\",\n      \"name\": \"AT&T Park\",\n      \"address\": {\n        \"@type\": \"PostalAddress\",\n        \"streetAddress\": \"24 Willie Mays Plaza\",\n        \"addressLocality\": \"San Francisco\",\n        \"addressRegion\": \"CA\",\n        \"postalCode\": \"94107\",\n        \"addressCountry\": \"US\"\n      }\n    }\n  }\n}\n</script>\n    <p>\n      Dear John, please rate Google Cafe between 1 and 5 stars and, optionally, add a text comment.\n    </p>\n  </body>\n</html>",
+        "x": 310,
+        "y": 140,
+        "wires": [
+            [
+                "dd712490.ac6188"
+            ]
+        ]
+    },
+    {
+        "id": "66d6a5f1.d697cc",
+        "type": "inject",
+        "z": "bb82f467.036d98",
+        "name": "",
+        "topic": "Event",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 120,
+        "y": 140,
+        "wires": [
+            [
+                "3456f766.7b7878"
+            ]
+        ]
+    },
+    {
+        "id": "7e7633e2.e59c6c",
+        "type": "xmpp out",
+        "z": "bb82f467.036d98",
+        "name": "",
+        "server": "b7357d8d.7a233",
+        "to": "andre.lademann@netresearch.de",
+        "join": false,
+        "sendObject": false,
+        "x": 550,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "b3bcde2f.cdde3",
+        "type": "mqtt in",
+        "z": "bb82f467.036d98",
+        "name": "coffee-bin.bin",
+        "topic": "vergissberlin/feeds/coffee-bin.bin",
+        "qos": "2",
+        "broker": "3517db02.a6b544",
+        "x": 290,
+        "y": 260,
+        "wires": [
+            [
+                "e3b685f3.faea28",
+                "7e7633e2.e59c6c",
+                "d262e0bf.6c6e2"
+            ]
+        ]
+    },
+    {
+        "id": "89b02cb2.96c91",
+        "type": "xmpp in",
+        "z": "bb82f467.036d98",
+        "name": "",
+        "server": "b7357d8d.7a233",
+        "to": "andre.lademann@netresearch.de",
+        "join": false,
+        "x": 310,
+        "y": 420,
+        "wires": [
+            [
+                "83a51231.548e7"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e3b685f3.faea28",
+        "type": "debug",
+        "z": "bb82f467.036d98",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 570,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "5f0e2d55.475d94",
+        "type": "mqtt in",
+        "z": "bb82f467.036d98",
+        "name": "coffee-bin.bin",
+        "topic": "vergissberlin/feeds/coffee-bin.maintenance",
+        "qos": "2",
+        "broker": "3517db02.a6b544",
+        "x": 290,
+        "y": 320,
+        "wires": [
+            [
+                "e3b685f3.faea28",
+                "d262e0bf.6c6e2"
+            ]
+        ]
+    },
+    {
+        "id": "d262e0bf.6c6e2",
+        "type": "xmpp out",
+        "z": "bb82f467.036d98",
+        "name": "",
+        "server": "15684f5d.19a101",
+        "to": "foosball@neresearch.de",
+        "join": false,
+        "sendObject": false,
+        "x": 550,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "d77695be.fd2f08",
+        "type": "xmpp out",
+        "z": "bb82f467.036d98",
+        "name": "",
+        "server": "b7357d8d.7a233",
+        "to": "typo3@conference.xmpp.netresearch.de",
+        "join": false,
+        "sendObject": false,
+        "x": 550,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "4f3c816c.f865e",
+        "type": "inject",
+        "z": "bb82f467.036d98",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 300,
+        "y": 480,
+        "wires": [
+            [
+                "d77695be.fd2f08"
+            ]
+        ]
+    },
+    {
+        "id": "83a51231.548e7",
+        "type": "debug",
+        "z": "bb82f467.036d98",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 570,
+        "y": 420,
+        "wires": []
+    }
+]
