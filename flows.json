@@ -627,7 +627,7 @@
         "to": "andre.lademann@netresearch.de",
         "join": false,
         "sendObject": false,
-        "x": 490,
+        "x": 530,
         "y": 300,
         "wires": []
     },
@@ -640,7 +640,7 @@
         "to": "foosball@neresearch.de",
         "join": false,
         "sendObject": false,
-        "x": 490,
+        "x": 530,
         "y": 100,
         "wires": []
     },
