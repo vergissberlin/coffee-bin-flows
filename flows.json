@@ -2,9 +2,16 @@
     {
         "id": "bb82f467.036d98",
         "type": "tab",
-        "label": "coffee bin",
+        "label": "coffee bin - mqtt",
         "disabled": false,
         "info": "The bin is full or not"
+    },
+    {
+        "id": "a7b4cee5.69f6e8",
+        "type": "tab",
+        "label": "coffee bin - social",
+        "disabled": false,
+        "info": ""
     },
     {
         "id": "d9eebb59.37215",
@@ -14,10 +21,10 @@
         "info": ""
     },
     {
-        "id": "a7b4cee5.69f6e8",
+        "id": "cec1e6a0.99a07",
         "type": "tab",
-        "label": "coffee bin - social",
-        "disabled": false,
+        "label": "Testing",
+        "disabled": true,
         "info": ""
     },
     {
@@ -132,7 +139,7 @@
                 }
             },
             "angularTheme": {
-                "primary": "deep-purple",
+                "primary": "indigo",
                 "accents": "blue",
                 "warn": "red",
                 "background": "grey"
@@ -156,13 +163,6 @@
                 "py": 0
             }
         }
-    },
-    {
-        "id": "45f8c5f8.bb9a8c",
-        "type": "slack-bot-controller",
-        "z": "",
-        "name": "Netresearch",
-        "token": "xoxp-2251962786-2251962790-490932179543-c36075ea8f847b2bea9dd13f02c0a234"
     },
     {
         "id": "420c5a87.aff35c",
@@ -194,91 +194,6 @@
         "collapse": false
     },
     {
-        "id": "dd712490.ac6188",
-        "type": "e-mail",
-        "z": "bb82f467.036d98",
-        "server": "smtp.gmail.com",
-        "port": "465",
-        "secure": true,
-        "name": "André Lademann <andre.lademann@netresearch.de>",
-        "dname": "",
-        "x": 700,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "9fe1659f.9f4f48",
-        "type": "inject",
-        "z": "bb82f467.036d98",
-        "name": "",
-        "topic": "Der Eimer der Kaffeemaschine ist voll",
-        "payload": "Es wird Zeit ihn zu leeren",
-        "payloadType": "str",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "x": 150,
-        "y": 100,
-        "wires": [
-            [
-                "834a0758.d30a68"
-            ]
-        ]
-    },
-    {
-        "id": "834a0758.d30a68",
-        "type": "function",
-        "z": "bb82f467.036d98",
-        "name": "msg",
-        "func": "msg.topic = 'JURA: Der Eimer der Kaffemaschine ist voll.';\nmsg.from = 'andre.lademann@netresearch.de';\nmsg.payload = '<h1>Alarm</h1><marquee>Bracket buster</marquee><div itemscope itemtype=\"http://schema.org/EmailMessage\">  <div itemprop=\"potentialAction\" itemscope itemtype=\"http://schema.org/ConfirmAction\">    <meta itemprop=\"name\" content=\"Approve Expense\"/>    <div itemprop=\"handler\" itemscope itemtype=\"http://schema.org/HttpActionHandler\">      <link itemprop=\"url\" href=\"https://myexpenses.com/approve?expenseId=abc123\"/>    </div>  </div>  <meta itemprop=\"description\" content=\"Approval request for Johns $10.13 expense for office supplies\"/></div>';\nmsg.attachements= [\n    {\n        filename: 'README.md',\n        path: '/app/README.md'\n    },\n       {   // use URL as an attachment \n        filename: 'coffee-bin-256.png',\n        path: '/usr/src/public/images/logo/coffee-bin-256.png'\n    }\n];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 310,
-        "y": 100,
-        "wires": [
-            [
-                "dd712490.ac6188"
-            ]
-        ]
-    },
-    {
-        "id": "3456f766.7b7878",
-        "type": "template",
-        "z": "bb82f467.036d98",
-        "name": "Event",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "html",
-        "syntax": "mustache",
-        "template": "<html>\n  <head>\n    <title>Did you enjoy Google Cafe?</title>\n  </head>\n  <body>\n    <script type=\"application/ld+json\">\n{\n  \"@context\": \"http://schema.org\",\n  \"@type\": \"EmailMessage\",\n  \"potentialAction\": {\n    \"@type\": \"ReviewAction\",\n    \"review\": {\n      \"@type\": \"Review\",\n      \"itemReviewed\": {\n        \"@type\": \"FoodEstablishment\",\n        \"name\": \"Joe's Diner\"\n      },\n      \"reviewRating\": {\n        \"@type\": \"Rating\",\n        \"bestRating\": \"5\",\n        \"worstRating\": \"1\"\n      }\n    },\n    \"handler\": {\n      \"@type\": \"HttpActionHandler\",\n      \"url\": \"http://reviews.com/review?id=123\",\n      \"requiredProperty\": {\n        \"@type\": \"Property\",\n        \"name\": \"review.reviewRating.ratingValue\"\n      },\n      \"method\": \"http://schema.org/HttpRequestMethod/POST\"\n    }\n  },\n  \"description\": \"We hope you enjoyed your meal at Joe's Diner. Please rate your experience.\"\n}\n</script>\n<script type=\"application/ld+json\">\n{\n  \"@context\": \"http://schema.org\",\n  \"@type\": \"EventReservation\",\n  \"reservationNumber\": \"E123456789\",\n  \"reservationStatus\": \"http://schema.org/Confirmed\",\n  \"underName\": {\n    \"@type\": \"Person\",\n    \"name\": \"John Smith\"\n  },\n  \"reservationFor\": {\n    \"@type\": \"Event\",\n    \"name\": \"Foo Fighters Concert\",\n    \"startDate\": \"2017-03-06T19:30:00-08:00\",\n    \"location\": {\n      \"@type\": \"Place\",\n      \"name\": \"AT&T Park\",\n      \"address\": {\n        \"@type\": \"PostalAddress\",\n        \"streetAddress\": \"24 Willie Mays Plaza\",\n        \"addressLocality\": \"San Francisco\",\n        \"addressRegion\": \"CA\",\n        \"postalCode\": \"94107\",\n        \"addressCountry\": \"US\"\n      }\n    }\n  }\n}\n</script>\n    <p>\n      Dear John, please rate Google Cafe between 1 and 5 stars and, optionally, add a text comment.\n    </p>\n  </body>\n</html>",
-        "x": 310,
-        "y": 60,
-        "wires": [
-            [
-                "dd712490.ac6188"
-            ]
-        ]
-    },
-    {
-        "id": "66d6a5f1.d697cc",
-        "type": "inject",
-        "z": "bb82f467.036d98",
-        "name": "",
-        "topic": "Event",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "x": 120,
-        "y": 60,
-        "wires": [
-            [
-                "3456f766.7b7878"
-            ]
-        ]
-    },
-    {
         "id": "b3bcde2f.cdde3",
         "type": "mqtt in",
         "z": "bb82f467.036d98",
@@ -286,8 +201,8 @@
         "topic": "vergissberlin/feeds/coffee-bin.bin",
         "qos": "2",
         "broker": "3517db02.a6b544",
-        "x": 290,
-        "y": 260,
+        "x": 270,
+        "y": 140,
         "wires": [
             [
                 "508d9e0f.7991b8"
@@ -302,8 +217,8 @@
         "topic": "vergissberlin/feeds/coffee-bin.maintenance",
         "qos": "2",
         "broker": "3517db02.a6b544",
-        "x": 260,
-        "y": 320,
+        "x": 240,
+        "y": 200,
         "wires": [
             [
                 "a0849241.ef3c6"
@@ -317,10 +232,11 @@
         "name": "MQTT bin",
         "links": [
             "79790779.e20a18",
-            "822e7bc1.cd1ff"
+            "822e7bc1.cd1ff",
+            "a2f6c64.c5efdb8"
         ],
-        "x": 515,
-        "y": 260,
+        "x": 495,
+        "y": 140,
         "wires": []
     },
     {
@@ -467,8 +383,8 @@
             "796a56f5.5c265",
             "151345af.ee8012"
         ],
-        "x": 515,
-        "y": 320,
+        "x": 495,
+        "y": 200,
         "wires": []
     },
     {
@@ -489,7 +405,7 @@
         "dot": false,
         "ymin": "0",
         "ymax": "1",
-        "removeOlder": 1,
+        "removeOlder": "12",
         "removeOlderPoints": "",
         "removeOlderUnit": "604800",
         "cutout": 0,
@@ -522,8 +438,8 @@
         "order": 2,
         "width": 0,
         "height": 0,
-        "name": "",
-        "label": "Maintenance status",
+        "name": "Maintenance status",
+        "label": "Maintenance",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
         "x": 570,
@@ -542,7 +458,7 @@
                 "pt": "msg",
                 "from": "1",
                 "fromt": "str",
-                "to": "Maintenance activated",
+                "to": "activated",
                 "tot": "str"
             },
             {
@@ -551,7 +467,7 @@
                 "pt": "msg",
                 "from": "0",
                 "fromt": "str",
-                "to": "Maintenance disabled",
+                "to": "inactive",
                 "tot": "str"
             }
         ],
@@ -587,170 +503,18 @@
         ]
     },
     {
-        "id": "822e7bc1.cd1ff",
-        "type": "link in",
-        "z": "a7b4cee5.69f6e8",
-        "name": "",
-        "links": [
-            "508d9e0f.7991b8"
-        ],
-        "x": 235,
-        "y": 100,
-        "wires": [
-            [
-                "38f529e5.9ed7e6"
-            ]
-        ]
-    },
-    {
         "id": "151345af.ee8012",
         "type": "link in",
         "z": "a7b4cee5.69f6e8",
-        "name": "",
+        "name": "SOCIAL: maintenance - in",
         "links": [
             "a0849241.ef3c6"
         ],
-        "x": 235,
+        "x": 195,
         "y": 300,
         "wires": [
             [
-                "710515ac.a45654"
-            ]
-        ]
-    },
-    {
-        "id": "710515ac.a45654",
-        "type": "xmpp out",
-        "z": "a7b4cee5.69f6e8",
-        "name": "",
-        "server": "b7357d8d.7a233",
-        "to": "andre.lademann@netresearch.de",
-        "join": false,
-        "sendObject": false,
-        "x": 530,
-        "y": 300,
-        "wires": []
-    },
-    {
-        "id": "38f529e5.9ed7e6",
-        "type": "xmpp out",
-        "z": "a7b4cee5.69f6e8",
-        "name": "",
-        "server": "15684f5d.19a101",
-        "to": "foosball@neresearch.de",
-        "join": false,
-        "sendObject": false,
-        "x": 530,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "65d75cd4.c11ce4",
-        "type": "xmpp in",
-        "z": "a7b4cee5.69f6e8",
-        "name": "",
-        "server": "b7357d8d.7a233",
-        "to": "typo3@conference.xmpp.netresearch.de",
-        "join": true,
-        "x": 290,
-        "y": 500,
-        "wires": [
-            [
-                "d7abfb65.ac419"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "8f2a5d72.73b1e8",
-        "type": "xmpp out",
-        "z": "a7b4cee5.69f6e8",
-        "name": "",
-        "server": "b7357d8d.7a233",
-        "to": "typo3@conference.xmpp.netresearch.de",
-        "join": true,
-        "sendObject": false,
-        "x": 530,
-        "y": 560,
-        "wires": []
-    },
-    {
-        "id": "8f4c89cb.a1f338",
-        "type": "inject",
-        "z": "a7b4cee5.69f6e8",
-        "name": "",
-        "topic": "",
-        "payload": "Seltsam",
-        "payloadType": "str",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 280,
-        "y": 560,
-        "wires": [
-            [
-                "8f2a5d72.73b1e8"
-            ]
-        ]
-    },
-    {
-        "id": "d7abfb65.ac419",
-        "type": "debug",
-        "z": "a7b4cee5.69f6e8",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 550,
-        "y": 500,
-        "wires": []
-    },
-    {
-        "id": "18c586e3.2209d1",
-        "type": "slack-out",
-        "z": "a7b4cee5.69f6e8",
-        "name": "",
-        "channel": "#ci",
-        "controller": "45f8c5f8.bb9a8c",
-        "x": 530,
-        "y": 620,
-        "wires": []
-    },
-    {
-        "id": "447707d3.9150a",
-        "type": "slack-in",
-        "z": "a7b4cee5.69f6e8",
-        "name": "andre.lademann",
-        "events": "direct_mention",
-        "controller": "45f8c5f8.bb9a8c",
-        "x": 260,
-        "y": 440,
-        "wires": [
-            [
-                "d7abfb65.ac419"
-            ]
-        ]
-    },
-    {
-        "id": "a507bf23.e43c4",
-        "type": "inject",
-        "z": "a7b4cee5.69f6e8",
-        "name": "",
-        "topic": "",
-        "payload": "MaSlack",
-        "payloadType": "str",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 280,
-        "y": 620,
-        "wires": [
-            [
-                "18c586e3.2209d1"
+                "bc9013c3.66aef"
             ]
         ]
     },
@@ -804,8 +568,8 @@
         "links": [
             "773c8529.b509dc"
         ],
-        "x": 346,
-        "y": 380,
+        "x": 326,
+        "y": 260,
         "wires": [
             [
                 "92d18e9d.1b54e8"
@@ -821,8 +585,8 @@
         "qos": "2",
         "retain": "",
         "broker": "3517db02.a6b544",
-        "x": 670,
-        "y": 380,
+        "x": 650,
+        "y": 260,
         "wires": []
     },
     {
@@ -846,16 +610,6 @@
         "wires": []
     },
     {
-        "id": "4f86ee7b.14f198",
-        "type": "comment",
-        "z": "a7b4cee5.69f6e8",
-        "name": "testing",
-        "info": "",
-        "x": 110,
-        "y": 400,
-        "wires": []
-    },
-    {
         "id": "ed266554.44eec8",
         "type": "comment",
         "z": "d9eebb59.37215",
@@ -873,6 +627,489 @@
         "info": "",
         "x": 110,
         "y": 240,
+        "wires": []
+    },
+    {
+        "id": "1d4c6500.67b1ab",
+        "type": "switch",
+        "z": "a7b4cee5.69f6e8",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 310,
+        "y": 100,
+        "wires": [
+            [
+                "6fb58cc9.74c7c4"
+            ],
+            [
+                "83eb95eb.b18a6"
+            ],
+            [
+                "bf41b183.c32888"
+            ]
+        ]
+    },
+    {
+        "id": "64ff6173.b39be8",
+        "type": "comment",
+        "z": "a7b4cee5.69f6e8",
+        "name": "channels",
+        "info": "",
+        "x": 120,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "f324ba40.8cce68",
+        "type": "xmpp out",
+        "z": "a7b4cee5.69f6e8",
+        "name": "",
+        "server": "b7357d8d.7a233",
+        "to": "andre.lademann@netresearch.de",
+        "join": false,
+        "sendObject": false,
+        "x": 470,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "3037439b.fcb564",
+        "type": "link in",
+        "z": "a7b4cee5.69f6e8",
+        "name": "SOCIAL: channel - in",
+        "links": [
+            "4ac8c37.938cfbc",
+            "80112adf.781258"
+        ],
+        "x": 195,
+        "y": 440,
+        "wires": [
+            [
+                "7de00f0e.eef1a8"
+            ]
+        ]
+    },
+    {
+        "id": "7de00f0e.eef1a8",
+        "type": "e-mail",
+        "z": "a7b4cee5.69f6e8",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "secure": true,
+        "name": "André Lademann <vergissberlin@googlemail.com>",
+        "dname": "",
+        "x": 610,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "7ccc43c6.64d744",
+        "type": "xmpp out",
+        "z": "a7b4cee5.69f6e8",
+        "name": "",
+        "server": "15684f5d.19a101",
+        "to": "foosball@neresearch.de",
+        "join": false,
+        "sendObject": false,
+        "x": 470,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "4ac8c37.938cfbc",
+        "type": "link out",
+        "z": "a7b4cee5.69f6e8",
+        "name": "SOCIAL: maintenance - out",
+        "links": [
+            "3037439b.fcb564"
+        ],
+        "x": 695,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "a2f6c64.c5efdb8",
+        "type": "link in",
+        "z": "a7b4cee5.69f6e8",
+        "name": "SOCIAL: bin - in",
+        "links": [
+            "508d9e0f.7991b8"
+        ],
+        "x": 195,
+        "y": 100,
+        "wires": [
+            [
+                "1d4c6500.67b1ab"
+            ]
+        ]
+    },
+    {
+        "id": "80112adf.781258",
+        "type": "link out",
+        "z": "a7b4cee5.69f6e8",
+        "name": "SOCIAL: bin - out",
+        "links": [
+            "3037439b.fcb564"
+        ],
+        "x": 675,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "bc9013c3.66aef",
+        "type": "switch",
+        "z": "a7b4cee5.69f6e8",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 310,
+        "y": 300,
+        "wires": [
+            [
+                "5df7961.4b197e8"
+            ],
+            [
+                "c014f7fa.d546c8"
+            ],
+            [
+                "aff74797.0a62e"
+            ]
+        ]
+    },
+    {
+        "id": "5df7961.4b197e8",
+        "type": "template",
+        "z": "a7b4cee5.69f6e8",
+        "name": "maintenance active",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "markdown",
+        "syntax": "plain",
+        "template": "@here *Maintenance active!* Liebe Kollegen, zur Zeit wird die Kaffeemaschine gereinigt. Ich gebe hier bescheid, wenn die Maschine wieder freigeben ist.",
+        "output": "str",
+        "x": 510,
+        "y": 260,
+        "wires": [
+            [
+                "4ac8c37.938cfbc"
+            ]
+        ]
+    },
+    {
+        "id": "6fb58cc9.74c7c4",
+        "type": "template",
+        "z": "a7b4cee5.69f6e8",
+        "name": "bin empty",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "markdown",
+        "syntax": "plain",
+        "template": "*Vielen Dank* dem Kollegen der den Eimer geleert hat. Nun können wir wieder ohne Sorge Kaffee ziehen.",
+        "output": "str",
+        "x": 480,
+        "y": 60,
+        "wires": [
+            [
+                "80112adf.781258"
+            ]
+        ]
+    },
+    {
+        "id": "83eb95eb.b18a6",
+        "type": "template",
+        "z": "a7b4cee5.69f6e8",
+        "name": "bin full",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "markdown",
+        "syntax": "plain",
+        "template": "*Es ist mal wieder soweit*, der Eimer unter der Kaffeemaschine muss wieder geleert werden.",
+        "output": "str",
+        "x": 470,
+        "y": 100,
+        "wires": [
+            [
+                "80112adf.781258"
+            ]
+        ]
+    },
+    {
+        "id": "c014f7fa.d546c8",
+        "type": "template",
+        "z": "a7b4cee5.69f6e8",
+        "name": "maintenance inactive",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "markdown",
+        "syntax": "plain",
+        "template": "@here *Maintenance ended!* Liebe Kollegen, die Kaffeemaschine steht wieder zu euren Diensten.",
+        "output": "str",
+        "x": 520,
+        "y": 300,
+        "wires": [
+            [
+                "4ac8c37.938cfbc"
+            ]
+        ]
+    },
+    {
+        "id": "f16c8baf.296d88",
+        "type": "xmpp in",
+        "z": "cec1e6a0.99a07",
+        "name": "",
+        "server": "b7357d8d.7a233",
+        "to": "typo3@conference.xmpp.netresearch.de",
+        "join": true,
+        "x": 290,
+        "y": 140,
+        "wires": [
+            [
+                "a6d60d8b.15f4f8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "83bf18c5.0e9b5",
+        "type": "xmpp out",
+        "z": "cec1e6a0.99a07",
+        "name": "",
+        "server": "b7357d8d.7a233",
+        "to": "typo3@conference.xmpp.netresearch.de",
+        "join": true,
+        "sendObject": false,
+        "x": 530,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "ff6b48f.e7a2838",
+        "type": "inject",
+        "z": "cec1e6a0.99a07",
+        "name": "",
+        "topic": "",
+        "payload": "Seltsam",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 280,
+        "y": 200,
+        "wires": [
+            [
+                "83bf18c5.0e9b5"
+            ]
+        ]
+    },
+    {
+        "id": "a6d60d8b.15f4f8",
+        "type": "debug",
+        "z": "cec1e6a0.99a07",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 550,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "a0f3b138.9069f",
+        "type": "inject",
+        "z": "cec1e6a0.99a07",
+        "name": "",
+        "topic": "",
+        "payload": "MaSlack",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 280,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "32fa361a.a908c2",
+        "type": "comment",
+        "z": "cec1e6a0.99a07",
+        "name": "testing",
+        "info": "",
+        "x": 110,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "f571d9d5.3fa6",
+        "type": "e-mail",
+        "z": "cec1e6a0.99a07",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "secure": true,
+        "name": "André Lademann <andre.lademann@netresearch.de>",
+        "dname": "",
+        "x": 840,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "d707e6.d8c49018",
+        "type": "inject",
+        "z": "cec1e6a0.99a07",
+        "name": "",
+        "topic": "Der Eimer der Kaffeemaschine ist voll",
+        "payload": "Es wird Zeit ihn zu leeren",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 290,
+        "y": 360,
+        "wires": [
+            [
+                "29c1f378.5ef1dc"
+            ]
+        ]
+    },
+    {
+        "id": "29c1f378.5ef1dc",
+        "type": "function",
+        "z": "cec1e6a0.99a07",
+        "name": "msg",
+        "func": "msg.topic = 'JURA: Der Eimer der Kaffemaschine ist voll.';\nmsg.from = 'andre.lademann@netresearch.de';\nmsg.payload = '<h1>Alarm</h1><marquee>Bracket buster</marquee><div itemscope itemtype=\"http://schema.org/EmailMessage\">  <div itemprop=\"potentialAction\" itemscope itemtype=\"http://schema.org/ConfirmAction\">    <meta itemprop=\"name\" content=\"Approve Expense\"/>    <div itemprop=\"handler\" itemscope itemtype=\"http://schema.org/HttpActionHandler\">      <link itemprop=\"url\" href=\"https://myexpenses.com/approve?expenseId=abc123\"/>    </div>  </div>  <meta itemprop=\"description\" content=\"Approval request for Johns $10.13 expense for office supplies\"/></div>';\nmsg.attachements= [\n    {\n        filename: 'README.md',\n        path: '/app/README.md'\n    },\n       {   // use URL as an attachment \n        filename: 'coffee-bin-256.png',\n        path: '/usr/src/public/images/logo/coffee-bin-256.png'\n    }\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 450,
+        "y": 360,
+        "wires": [
+            [
+                "f571d9d5.3fa6"
+            ]
+        ]
+    },
+    {
+        "id": "d031d75f.8f641",
+        "type": "template",
+        "z": "cec1e6a0.99a07",
+        "name": "Event",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "mustache",
+        "template": "<html>\n  <head>\n    <title>Did you enjoy Google Cafe?</title>\n  </head>\n  <body>\n    <script type=\"application/ld+json\">\n{\n  \"@context\": \"http://schema.org\",\n  \"@type\": \"EmailMessage\",\n  \"potentialAction\": {\n    \"@type\": \"ReviewAction\",\n    \"review\": {\n      \"@type\": \"Review\",\n      \"itemReviewed\": {\n        \"@type\": \"FoodEstablishment\",\n        \"name\": \"Joe's Diner\"\n      },\n      \"reviewRating\": {\n        \"@type\": \"Rating\",\n        \"bestRating\": \"5\",\n        \"worstRating\": \"1\"\n      }\n    },\n    \"handler\": {\n      \"@type\": \"HttpActionHandler\",\n      \"url\": \"http://reviews.com/review?id=123\",\n      \"requiredProperty\": {\n        \"@type\": \"Property\",\n        \"name\": \"review.reviewRating.ratingValue\"\n      },\n      \"method\": \"http://schema.org/HttpRequestMethod/POST\"\n    }\n  },\n  \"description\": \"We hope you enjoyed your meal at Joe's Diner. Please rate your experience.\"\n}\n</script>\n<script type=\"application/ld+json\">\n{\n  \"@context\": \"http://schema.org\",\n  \"@type\": \"EventReservation\",\n  \"reservationNumber\": \"E123456789\",\n  \"reservationStatus\": \"http://schema.org/Confirmed\",\n  \"underName\": {\n    \"@type\": \"Person\",\n    \"name\": \"John Smith\"\n  },\n  \"reservationFor\": {\n    \"@type\": \"Event\",\n    \"name\": \"Foo Fighters Concert\",\n    \"startDate\": \"2017-03-06T19:30:00-08:00\",\n    \"location\": {\n      \"@type\": \"Place\",\n      \"name\": \"AT&T Park\",\n      \"address\": {\n        \"@type\": \"PostalAddress\",\n        \"streetAddress\": \"24 Willie Mays Plaza\",\n        \"addressLocality\": \"San Francisco\",\n        \"addressRegion\": \"CA\",\n        \"postalCode\": \"94107\",\n        \"addressCountry\": \"US\"\n      }\n    }\n  }\n}\n</script>\n    <p>\n      Dear John, please rate Google Cafe between 1 and 5 stars and, optionally, add a text comment.\n    </p>\n  </body>\n</html>",
+        "x": 450,
+        "y": 320,
+        "wires": [
+            [
+                "f571d9d5.3fa6"
+            ]
+        ]
+    },
+    {
+        "id": "c5543bc5.81af88",
+        "type": "inject",
+        "z": "cec1e6a0.99a07",
+        "name": "",
+        "topic": "Event",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 260,
+        "y": 320,
+        "wires": [
+            [
+                "d031d75f.8f641"
+            ]
+        ]
+    },
+    {
+        "id": "6e4951c6.8ebfa8",
+        "type": "inject",
+        "z": "a7b4cee5.69f6e8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 260,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aff74797.0a62e",
+        "type": "debug",
+        "z": "a7b4cee5.69f6e8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 490,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "bf41b183.c32888",
+        "type": "debug",
+        "z": "a7b4cee5.69f6e8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 490,
+        "y": 140,
         "wires": []
     }
 ]
