@@ -704,7 +704,10 @@
         "y": 440,
         "wires": [
             [
-                "7de00f0e.eef1a8"
+                "7de00f0e.eef1a8",
+                "bdf86d91.c56418",
+                "f324ba40.8cce68",
+                "7ccc43c6.64d744"
             ]
         ]
     },
@@ -726,7 +729,7 @@
         "type": "xmpp out",
         "z": "a7b4cee5.69f6e8",
         "name": "",
-        "server": "15684f5d.19a101",
+        "server": "b7357d8d.7a233",
         "to": "foosball@neresearch.de",
         "join": false,
         "sendObject": false,
@@ -954,24 +957,6 @@
         "wires": []
     },
     {
-        "id": "a0f3b138.9069f",
-        "type": "inject",
-        "z": "cec1e6a0.99a07",
-        "name": "",
-        "topic": "",
-        "payload": "MaSlack",
-        "payloadType": "str",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 280,
-        "y": 260,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "32fa361a.a908c2",
         "type": "comment",
         "z": "cec1e6a0.99a07",
@@ -1021,7 +1006,7 @@
         "func": "msg.topic = 'JURA: Der Eimer der Kaffemaschine ist voll.';\nmsg.from = 'andre.lademann@netresearch.de';\nmsg.payload = '<h1>Alarm</h1><marquee>Bracket buster</marquee><div itemscope itemtype=\"http://schema.org/EmailMessage\">  <div itemprop=\"potentialAction\" itemscope itemtype=\"http://schema.org/ConfirmAction\">    <meta itemprop=\"name\" content=\"Approve Expense\"/>    <div itemprop=\"handler\" itemscope itemtype=\"http://schema.org/HttpActionHandler\">      <link itemprop=\"url\" href=\"https://myexpenses.com/approve?expenseId=abc123\"/>    </div>  </div>  <meta itemprop=\"description\" content=\"Approval request for Johns $10.13 expense for office supplies\"/></div>';\nmsg.attachements= [\n    {\n        filename: 'README.md',\n        path: '/app/README.md'\n    },\n       {   // use URL as an attachment \n        filename: 'coffee-bin-256.png',\n        path: '/usr/src/public/images/logo/coffee-bin-256.png'\n    }\n];\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 450,
+        "x": 530,
         "y": 360,
         "wires": [
             [
@@ -1039,7 +1024,7 @@
         "format": "html",
         "syntax": "mustache",
         "template": "<html>\n  <head>\n    <title>Did you enjoy Google Cafe?</title>\n  </head>\n  <body>\n    <script type=\"application/ld+json\">\n{\n  \"@context\": \"http://schema.org\",\n  \"@type\": \"EmailMessage\",\n  \"potentialAction\": {\n    \"@type\": \"ReviewAction\",\n    \"review\": {\n      \"@type\": \"Review\",\n      \"itemReviewed\": {\n        \"@type\": \"FoodEstablishment\",\n        \"name\": \"Joe's Diner\"\n      },\n      \"reviewRating\": {\n        \"@type\": \"Rating\",\n        \"bestRating\": \"5\",\n        \"worstRating\": \"1\"\n      }\n    },\n    \"handler\": {\n      \"@type\": \"HttpActionHandler\",\n      \"url\": \"http://reviews.com/review?id=123\",\n      \"requiredProperty\": {\n        \"@type\": \"Property\",\n        \"name\": \"review.reviewRating.ratingValue\"\n      },\n      \"method\": \"http://schema.org/HttpRequestMethod/POST\"\n    }\n  },\n  \"description\": \"We hope you enjoyed your meal at Joe's Diner. Please rate your experience.\"\n}\n</script>\n<script type=\"application/ld+json\">\n{\n  \"@context\": \"http://schema.org\",\n  \"@type\": \"EventReservation\",\n  \"reservationNumber\": \"E123456789\",\n  \"reservationStatus\": \"http://schema.org/Confirmed\",\n  \"underName\": {\n    \"@type\": \"Person\",\n    \"name\": \"John Smith\"\n  },\n  \"reservationFor\": {\n    \"@type\": \"Event\",\n    \"name\": \"Foo Fighters Concert\",\n    \"startDate\": \"2017-03-06T19:30:00-08:00\",\n    \"location\": {\n      \"@type\": \"Place\",\n      \"name\": \"AT&T Park\",\n      \"address\": {\n        \"@type\": \"PostalAddress\",\n        \"streetAddress\": \"24 Willie Mays Plaza\",\n        \"addressLocality\": \"San Francisco\",\n        \"addressRegion\": \"CA\",\n        \"postalCode\": \"94107\",\n        \"addressCountry\": \"US\"\n      }\n    }\n  }\n}\n</script>\n    <p>\n      Dear John, please rate Google Cafe between 1 and 5 stars and, optionally, add a text comment.\n    </p>\n  </body>\n</html>",
-        "x": 450,
+        "x": 530,
         "y": 320,
         "wires": [
             [
@@ -1064,24 +1049,6 @@
             [
                 "d031d75f.8f641"
             ]
-        ]
-    },
-    {
-        "id": "6e4951c6.8ebfa8",
-        "type": "inject",
-        "z": "a7b4cee5.69f6e8",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 260,
-        "y": 620,
-        "wires": [
-            []
         ]
     },
     {
@@ -1110,6 +1077,52 @@
         "complete": "false",
         "x": 490,
         "y": 140,
+        "wires": []
+    },
+    {
+        "id": "4d2fb91b.23b96",
+        "type": "slack",
+        "z": "cec1e6a0.99a07",
+        "name": "",
+        "channelURL": "https://hooks.slack.com/services/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",
+        "username": "coffee-bin",
+        "emojiIcon": ":coffee:",
+        "channel": "#ci",
+        "x": 530,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "de786997.11bf9",
+        "type": "inject",
+        "z": "cec1e6a0.99a07",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 260,
+        "y": 480,
+        "wires": [
+            [
+                "4d2fb91b.23b96"
+            ]
+        ]
+    },
+    {
+        "id": "bdf86d91.c56418",
+        "type": "slack",
+        "z": "a7b4cee5.69f6e8",
+        "name": "",
+        "channelURL": "https://hooks.slack.com/services/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",
+        "username": "coffee-bin",
+        "emojiIcon": ":coffee:",
+        "channel": "#general",
+        "x": 470,
+        "y": 560,
         "wires": []
     }
 ]
