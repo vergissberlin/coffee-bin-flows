@@ -698,9 +698,8 @@
         "wires": [
             [
                 "7de00f0e.eef1a8",
-                "546e14eb.f4f35c",
-                "e980ae31.c0c43",
-                "b846374.1a25ac8"
+                "b846374.1a25ac8",
+                "5817981c.2456c8"
             ]
         ]
     },
@@ -1101,8 +1100,8 @@
         "username": "coffee-bin",
         "emojiIcon": ":coffee:",
         "channel": "#general",
-        "x": 770,
-        "y": 500,
+        "x": 670,
+        "y": 560,
         "wires": []
     },
     {
@@ -1114,7 +1113,7 @@
         "to": "mitarbeiter@conference.xmpp.netresearch.de",
         "join": true,
         "sendObject": false,
-        "x": 470,
+        "x": 830,
         "y": 440,
         "wires": []
     },
@@ -1124,8 +1123,8 @@
         "z": "a7b4cee5.69f6e8",
         "twitter": "e2416e17.ce05f",
         "name": "tweet",
-        "x": 770,
-        "y": 560,
+        "x": 990,
+        "y": 500,
         "wires": []
     },
     {
@@ -1186,10 +1185,10 @@
         "fieldType": "msg",
         "format": "handlebars",
         "syntax": "mustache",
-        "template": "Neues von der Kaffeemaschine: \n{{payload}}",
+        "template": "Neues von der Kaffeemaschine ({{random}}): {{payload}}",
         "output": "str",
-        "x": 480,
-        "y": 560,
+        "x": 840,
+        "y": 500,
         "wires": [
             [
                 "e6cc3be0.30f0a8"
@@ -1208,10 +1207,57 @@
         "template": "@here {{payload}}",
         "output": "str",
         "x": 480,
-        "y": 500,
+        "y": 560,
         "wires": [
             [
                 "bdf86d91.c56418"
+            ]
+        ]
+    },
+    {
+        "id": "5817981c.2456c8",
+        "type": "change",
+        "z": "a7b4cee5.69f6e8",
+        "name": "remove star",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "*",
+                "fromt": "str",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 440,
+        "wires": [
+            [
+                "546e14eb.f4f35c",
+                "a03a05fe.cbb9c8"
+            ]
+        ]
+    },
+    {
+        "id": "a03a05fe.cbb9c8",
+        "type": "random",
+        "z": "a7b4cee5.69f6e8",
+        "name": "",
+        "low": "1",
+        "high": "144",
+        "inte": "true",
+        "property": "random",
+        "x": 680,
+        "y": 500,
+        "wires": [
+            [
+                "e980ae31.c0c43"
             ]
         ]
     }

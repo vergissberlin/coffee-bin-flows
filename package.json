@@ -1,6 +1,6 @@
 {
     "name": "coffee-bin-flows",
-    "description": "A Node-RED Project",
+    "description": "The coffee bin status bot",
     "version": "0.0.1",
     "dependencies": {},
     "node-red": {
