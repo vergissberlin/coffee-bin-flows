@@ -24,7 +24,7 @@
         "id": "cec1e6a0.99a07",
         "type": "tab",
         "label": "Testing",
-        "disabled": true,
+        "disabled": false,
         "info": ""
     },
     {
@@ -632,7 +632,7 @@
         "name": "maintenance",
         "info": "",
         "x": 110,
-        "y": 240,
+        "y": 220,
         "wires": []
     },
     {
@@ -698,9 +698,9 @@
         "wires": [
             [
                 "7de00f0e.eef1a8",
-                "bdf86d91.c56418",
                 "546e14eb.f4f35c",
-                "e6cc3be0.30f0a8"
+                "e980ae31.c0c43",
+                "b846374.1a25ac8"
             ]
         ]
     },
@@ -786,10 +786,10 @@
         "y": 300,
         "wires": [
             [
-                "5df7961.4b197e8"
+                "c014f7fa.d546c8"
             ],
             [
-                "c014f7fa.d546c8"
+                "5df7961.4b197e8"
             ],
             [
                 "aff74797.0a62e"
@@ -805,10 +805,10 @@
         "fieldType": "msg",
         "format": "markdown",
         "syntax": "plain",
-        "template": "@here *Maintenance active!* Liebe Kollegen, zur Zeit wird die Kaffeemaschine gereinigt. Ich gebe hier bescheid, wenn die Maschine wieder freigeben ist.",
+        "template": "*Maintenance active!* Liebe Kollegen, zur Zeit wird die Kaffeemaschine gereinigt. Ich gebe hier bescheid, wenn die Maschine wieder freigeben ist.",
         "output": "str",
         "x": 510,
-        "y": 260,
+        "y": 300,
         "wires": [
             [
                 "4ac8c37.938cfbc"
@@ -862,10 +862,10 @@
         "fieldType": "msg",
         "format": "markdown",
         "syntax": "plain",
-        "template": "@here *Maintenance ended!* Liebe Kollegen, die Kaffeemaschine steht wieder zu euren Diensten.",
+        "template": "*Maintenance ended!* Liebe Kollegen, die Kaffeemaschine steht wieder zu euren Diensten.",
         "output": "str",
         "x": 520,
-        "y": 300,
+        "y": 260,
         "wires": [
             [
                 "4ac8c37.938cfbc"
@@ -1101,7 +1101,7 @@
         "username": "coffee-bin",
         "emojiIcon": ":coffee:",
         "channel": "#general",
-        "x": 470,
+        "x": 770,
         "y": 500,
         "wires": []
     },
@@ -1124,7 +1124,7 @@
         "z": "a7b4cee5.69f6e8",
         "twitter": "e2416e17.ce05f",
         "name": "tweet",
-        "x": 470,
+        "x": 770,
         "y": 560,
         "wires": []
     },
@@ -1174,6 +1174,44 @@
         "wires": [
             [
                 "db686f6.d37db9"
+            ]
+        ]
+    },
+    {
+        "id": "e980ae31.c0c43",
+        "type": "template",
+        "z": "a7b4cee5.69f6e8",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Neues von der Kaffeemaschine: \n{{payload}}",
+        "output": "str",
+        "x": 480,
+        "y": 560,
+        "wires": [
+            [
+                "e6cc3be0.30f0a8"
+            ]
+        ]
+    },
+    {
+        "id": "b846374.1a25ac8",
+        "type": "template",
+        "z": "a7b4cee5.69f6e8",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "@here {{payload}}",
+        "output": "str",
+        "x": 480,
+        "y": 500,
+        "wires": [
+            [
+                "bdf86d91.c56418"
             ]
         ]
     }
