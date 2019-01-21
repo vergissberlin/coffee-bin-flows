@@ -64,7 +64,7 @@
         "type": "xmpp-server",
         "z": "",
         "user": "foosball@netresearch.de",
-        "nickname": "foosball"
+        "nickname": "coffee-bin"
     },
     {
         "id": "cd5db4fe.a1b9b8",
@@ -192,6 +192,12 @@
         "disp": false,
         "width": "6",
         "collapse": false
+    },
+    {
+        "id": "e2416e17.ce05f",
+        "type": "twitter-credentials",
+        "z": "",
+        "screen_name": "nr_coffee_bin"
     },
     {
         "id": "b3bcde2f.cdde3",
@@ -679,19 +685,6 @@
         "wires": []
     },
     {
-        "id": "f324ba40.8cce68",
-        "type": "xmpp out",
-        "z": "a7b4cee5.69f6e8",
-        "name": "",
-        "server": "b7357d8d.7a233",
-        "to": "andre.lademann@netresearch.de",
-        "join": false,
-        "sendObject": false,
-        "x": 470,
-        "y": 500,
-        "wires": []
-    },
-    {
         "id": "3037439b.fcb564",
         "type": "link in",
         "z": "a7b4cee5.69f6e8",
@@ -706,8 +699,8 @@
             [
                 "7de00f0e.eef1a8",
                 "bdf86d91.c56418",
-                "f324ba40.8cce68",
-                "7ccc43c6.64d744"
+                "546e14eb.f4f35c",
+                "e6cc3be0.30f0a8"
             ]
         ]
     },
@@ -718,23 +711,10 @@
         "server": "smtp.gmail.com",
         "port": "465",
         "secure": true,
-        "name": "André Lademann <vergissberlin@googlemail.com>",
+        "name": "André Lademann <andre.lademann@netresearch.de>",
         "dname": "",
-        "x": 610,
+        "x": 620,
         "y": 620,
-        "wires": []
-    },
-    {
-        "id": "7ccc43c6.64d744",
-        "type": "xmpp out",
-        "z": "a7b4cee5.69f6e8",
-        "name": "",
-        "server": "b7357d8d.7a233",
-        "to": "foosball@neresearch.de",
-        "join": false,
-        "sendObject": false,
-        "x": 470,
-        "y": 440,
         "wires": []
     },
     {
@@ -915,7 +895,7 @@
         "z": "cec1e6a0.99a07",
         "name": "",
         "server": "b7357d8d.7a233",
-        "to": "typo3@conference.xmpp.netresearch.de",
+        "to": "mitarbeiter@conference.xmpp.netresearch.de",
         "join": true,
         "sendObject": false,
         "x": 530,
@@ -928,13 +908,13 @@
         "z": "cec1e6a0.99a07",
         "name": "",
         "topic": "",
-        "payload": "Seltsam",
-        "payloadType": "str",
+        "payload": "",
+        "payloadType": "date",
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 280,
+        "x": 290,
         "y": 200,
         "wires": [
             [
@@ -1122,7 +1102,79 @@
         "emojiIcon": ":coffee:",
         "channel": "#general",
         "x": 470,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "546e14eb.f4f35c",
+        "type": "xmpp out",
+        "z": "a7b4cee5.69f6e8",
+        "name": "",
+        "server": "15684f5d.19a101",
+        "to": "mitarbeiter@conference.xmpp.netresearch.de",
+        "join": true,
+        "sendObject": false,
+        "x": 470,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "e6cc3be0.30f0a8",
+        "type": "twitter out",
+        "z": "a7b4cee5.69f6e8",
+        "twitter": "e2416e17.ce05f",
+        "name": "tweet",
+        "x": 470,
         "y": 560,
         "wires": []
+    },
+    {
+        "id": "db686f6.d37db9",
+        "type": "twitter out",
+        "z": "cec1e6a0.99a07",
+        "twitter": "e2416e17.ce05f",
+        "name": "tweet",
+        "x": 530,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "581c4778.cbaba8",
+        "type": "inject",
+        "z": "cec1e6a0.99a07",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 260,
+        "y": 520,
+        "wires": [
+            [
+                "a5796af9.93c858"
+            ]
+        ]
+    },
+    {
+        "id": "a5796af9.93c858",
+        "type": "template",
+        "z": "cec1e6a0.99a07",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "This is the payload: {{payload}} !",
+        "output": "str",
+        "x": 400,
+        "y": 520,
+        "wires": [
+            [
+                "db686f6.d37db9"
+            ]
+        ]
     }
 ]
